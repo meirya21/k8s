@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guess-app
+  labels:
+    app: guess-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guess-app
+  template:
+    metadata:
+      labels:
+        app: guess-app
+    spec:
+      containers:
+      - name: guess-app
+        imagePullPolicy: IfNotPresent
+        image: guess
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
